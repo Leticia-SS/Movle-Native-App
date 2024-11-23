@@ -1,5 +1,5 @@
 import { TMDB_API_KEY, TMDB_BASE_URL } from '../config/api';
-import type { MediaType, MediaCategory, Movie, TVSeries, TMDBResponse } from '../types/tmdb';
+import type { MediaType, MediaCategory, Movie, TVSeries, TMDBResponse, Actor, MovieDetails } from '../types/tmdb';
 
 class TMDBService {
   private async fetch<T>(endpoint: string): Promise<T> {
@@ -24,6 +24,14 @@ class TMDBService {
 
   async searchMedia(query: string, type: MediaType): Promise<TMDBResponse<Movie | TVSeries>> {
     return this.fetch<TMDBResponse<Movie | TVSeries>>(`/search/${type}?query=${encodeURIComponent(query)}`);
+  }
+
+  async getPopularActors(): Promise<TMDBResponse<Actor>> {
+    return this.fetch<TMDBResponse<Actor>>('/person/popular');
+  }
+
+  async getMovieDetails(id: number): Promise<MovieDetails> {
+    return this.fetch<MovieDetails>(`/movie/${id}`);
   }
 }
 

@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import { tmdbService } from '../services/tmdb';
 import type { MediaType, MediaCategory, Movie, TVSeries } from '../types/tmdb';
 
